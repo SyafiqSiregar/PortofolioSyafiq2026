@@ -327,19 +327,19 @@ const CURATED_PROJECTS = [
     ]
   },
   {
-    id: "bantuin-motionlab",
+    id: "bantuin-research",
     category: "web",
     featured: false,
-    badge: "UI/UX & LAB RESEARCH",
+    badge: "UI/UX & ENGINEERING RESEARCH",
     year: "2024–2026 · Telkom Univ",
-    title: "Bantuin UI/UX & Riset Motion Lab",
+    title: "Bantuin UI/UX & Riset Sistem",
     subtitle: "Atomic Design System Figma & Rekayasa Jaringan Konkuren",
     platforms: ["Figma Design System", "Java & Go", "Wireshark Analysis"],
-    desc: "Perancangan sistem desain atomik aplikasi mobile gotong-royong Bantuin di Figma serta riset algoritma pemrosesan aliran konkuren dan analisis paket keamanan jaringan di Motion Laboratory Telkom University.",
+    desc: "Perancangan sistem desain atomik aplikasi mobile gotong-royong Bantuin di Figma serta riset algoritma pemrosesan aliran konkuren dan analisis paket keamanan jaringan di Telkom University.",
     metrics: [
       ["40+", "Komponen Figma"],
       ["92%", "Usability Score"],
-      ["Go & Java", "Riset Lab"]
+      ["Go & Java", "Riset Sistem"]
     ],
     stack: ["Figma UI/UX", "Atomic Tokens", "Java", "Go (Golang)", "Wireshark", "Clean Architecture"],
     liveUrl: null,
@@ -349,7 +349,7 @@ const CURATED_PROJECTS = [
     architecture: "Sisi desain menggunakan arsitektur Atomic Design Tokens & Auto-Layout di Figma; sisi rekayasa sistem menerapkan prinsip SOLID pada pipeline Java & Go serta bedah paket menggunakan Wireshark.",
     features: [
       "40+ komponen atomik Figma berstandar kontras aksesibilitas tinggi dengan alur permintaan bantuan <3 ketukan.",
-      "Eksperimen pemrosesan konkuren berlatensi rendah menggunakan bahasa Go dan Java di Motion Lab.",
+      "Eksperimen pemrosesan konkuren berlatensi rendah menggunakan bahasa Go dan Java.",
       "Analisis integritas paket jaringan dan deteksi anomali transmisi menggunakan Wireshark."
     ]
   }

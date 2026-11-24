@@ -1,6 +1,6 @@
 # SYAFIQ SIREGAR — SPIDER/DEV Portfolio
 
-Portofolio interaktif *scroll-driven* milik **Syafiq Siregar** (Software Engineer, POS Architect & UI/UX Designer · Motion Laboratory, Telkom University).
+Portofolio interaktif *scroll-driven* milik **Syafiq Siregar** (Software Engineer, POS Architect & UI/UX Designer · Telkom University).
 
 Menggabungkan video *scroll-scrubbed* bergaya komik editorial dengan showcase terstruktur yang menempatkan **Ekosistem Aplikasi Kasir (POS) Offline-First, Android APK, & Cloud Inventory** di urutan paling atas, diikuti sistem enterprise, platform web, dan desain produk UI/UX.
 
