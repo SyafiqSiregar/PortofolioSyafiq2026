@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SYAFIQ SIREGAR · Software Engineer, POS Architect &amp; UI/UX Designer</title>
+  <meta name="description" content="Portofolio Syafiq Siregar, Software Engineer &amp; UI/UX Designer di Telkom University (Motion Laboratory). Spesialis aplikasi Point of Sale (POS) Offline-First, Android APK, PWA, dan sistem bisnis modern." />
+
+  <!-- Fonts: Anton (display), Space Grotesk (UI & body), JetBrains Mono (technical metadata), Bangers (comic accents) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Skip to content for keyboard accessibility -->
+  <a class="skip-link" href="#case-files">Langsung ke Daftar Projek</a>
+
+  <!-- ============================================================
+       PRELOADER — fast hero buffer + instant skip option
+  ============================================================= -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__frame">
+      <span class="loader__issue">ISSUE&nbsp;#01 · PORTFOLIO EDITION</span>
+      <h2 class="loader__title">SPIDER<span>/</span>DEV</h2>
+      <p class="loader__sub">Menyiapkan pengalaman interaktif…</p>
+      <div class="loader__bar"><i id="loaderBar"></i></div>
+      <div class="loader__meta">
+        <span class="loader__pct" id="loaderPct">0%</span>
+        <button type="button" class="loader__skip" id="loaderSkip">Masuk Sekarang</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Film grain overlay (subtle editorial texture) -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Scroll progress hairline -->
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+
+  <!-- Web thread — left-edge flowing scroll progress -->
+  <div class="thread" aria-hidden="true">
+    <i class="thread__fill" id="threadFill"></i>
+    <span class="thread__bead" id="threadBead"></span>
+  </div>
+
+  <!-- Story rail — section indicator + quick jumps (desktop) -->
+  <nav class="rail" id="rail" aria-label="Navigasi bab halaman">
+    <button type="button" class="rail__dot" data-rail="origin"><span class="rail__label">INTRO</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="m1"><span class="rail__label">SEMBAKO&nbsp;OS</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="m2"><span class="rail__label">F&amp;B&nbsp;POS&nbsp;APK</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="m3"><span class="rail__label">KEAHLIAN</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="cases"><span class="rail__label">PROJEK&nbsp;POS</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="the-craft"><span class="rail__label">ARSITEKTUR</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="manifesto"><span class="rail__label">PROFIL</span><i></i></button>
+    <button type="button" class="rail__dot" data-rail="signal"><span class="rail__label">KONTAK</span><i></i></button>
+  </nav>
+
+  <!-- SVG Sprite for Vector Icons & Comic Emblems -->
+  <svg class="sprite" aria-hidden="true" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden;">
+    <symbol id="burst" viewBox="0 0 100 100">
+      <polygon points="50.0,0.0 56.8,22.3 70.9,10.2 70.2,27.2 85.9,25.2 77.9,39.4 96.6,44.3 77.0,53.3 99.1,68.6 70.1,63.9 87.3,92.1 60.9,70.8 63.3,103.8 50.0,75.2 37.9,99.2 36.9,74.9 19.9,84.0 25.1,67.2 9.3,65.4 20.2,53.6 4.0,44.4 24.3,40.2 7.3,20.5 33.7,31.5 24.0,0.4 44.4,27.2" fill="currentColor"/>
+    </symbol>
+    <symbol id="spider" viewBox="0 0 100 110">
+      <g fill="none" stroke="currentColor" stroke-linecap="round">
+        <path d="M45 36 C36.5 32.7 20 14 6 42" stroke-width="3.4"/>
+        <path d="M55 36 C63.5 32.7 80 14 94 42" stroke-width="3.4"/>
+        <path d="M45 40 C35.1 39.4 17 36 4 66" stroke-width="3.1"/>
+        <path d="M55 40 C64.8 39.4 83 36 96 66" stroke-width="3.1"/>
+        <path d="M45 44 C36.0 46.1 19 58 8 88" stroke-width="2.8"/>
+        <path d="M55 44 C64.0 46.1 81 58 92 88" stroke-width="2.8"/>
+        <path d="M45 48 C38.8 52.5 25 78 16 106" stroke-width="2.5"/>
+        <path d="M55 48 C61.2 52.5 75 78 84 106" stroke-width="2.5"/>
+      </g>
+      <ellipse cx="50" cy="38" rx="7.5" ry="9" fill="currentColor"/>
+      <ellipse cx="50" cy="60" rx="10.5" ry="18" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-pos" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="12" rx="2"/>
+        <path d="M2 20h20M7 16v4M17 16v4M7 8h4M7 12h2M14 8h3v4h-3z"/>
+      </g>
+    </symbol>
+    <symbol id="icon-android" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6" y="3" width="12" height="18" rx="2.5"/>
+        <path d="M10 6h4M12 18h.01"/>
+      </g>
+    </symbol>
+    <symbol id="icon-layers" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
+      </g>
+    </symbol>
+    <symbol id="icon-external" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 17L17 7M9 7h8v8"/>
+      </g>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m20 20-3.5-3.5"/>
+      </g>
+    </symbol>
+    <symbol id="icon-bolt" viewBox="0 0 24 24">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </g>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <polyline points="20 6 9 17 4 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 7h16M4 12h16M4 17h10"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- ============================================================
+       FIXED CHROME — Editorial Navigation Bar + Mobile Drawer
+  ============================================================= -->
+  <header class="chrome" id="chrome">
+    <div class="chrome__bar">
+      <a class="chrome__logo" href="#top" aria-label="Syafiq Siregar kembali ke atas">
+        <svg class="chrome__spider" aria-hidden="true"><use href="#spider"/></svg>
+        <span>SYAFIQ</span><em>/</em><span class="chrome__nv">DEV</span>
+      </a>
+
+      <nav class="chrome__nav" aria-label="Navigasi utama">
+        <a class="chrome__link" href="#hero" data-nav-sec="hero">Intro</a>
+        <a class="chrome__link" href="#missions" data-nav-sec="missions">Showcase Reel</a>
+        <a class="chrome__link chrome__link--highlight" href="#case-files" data-nav-sec="case-files">
+          <svg aria-hidden="true"><use href="#icon-pos"/></svg>
+          <span>POS &amp; Projek</span>
+        </a>
+        <a class="chrome__link" href="#the-craft" data-nav-sec="the-craft">Proses</a>
+        <a class="chrome__link" href="#manifesto" data-nav-sec="manifesto">Profil</a>
+      </nav>
+
+      <div class="chrome__actions">
+        <a class="chrome__cta magnetic" href="#contact">
+          <span class="magnetic__inner">Diskusi Projek</span>
+        </a>
+        <button
+          type="button"
+          class="chrome__menu-btn"
+          id="mobileMenuBtn"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+          aria-controls="mobileNavDrawer"
+        >
+          <svg class="icon-open" aria-hidden="true"><use href="#icon-menu"/></svg>
+          <svg class="icon-close" aria-hidden="true"><use href="#icon-close"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobileNavDrawer" hidden>
+      <nav class="mobile-drawer__nav" aria-label="Navigasi mobile">
+        <a class="mobile-drawer__link" href="#hero">01 · Intro</a>
+        <a class="mobile-drawer__link" href="#missions">02 · Showcase Reel</a>
+        <a class="mobile-drawer__link mobile-drawer__link--accent" href="#case-files">03 · Aplikasi POS &amp; Projek Unggulan</a>
+        <a class="mobile-drawer__link" href="#the-craft">04 · Arsitektur &amp; Proses</a>
+        <a class="mobile-drawer__link" href="#manifesto">05 · Profil &amp; Pengalaman</a>
+        <a class="mobile-drawer__link" href="#contact">06 · Kontak &amp; Kolaborasi</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Floating Quick-Jump Pill while inside pinned video reels -->
+  <a class="reel-skip" id="reelSkip" href="#case-files" aria-label="Langsung menuju daftar aplikasi POS dan projek">
+    <svg aria-hidden="true"><use href="#icon-pos"/></svg>
+    <span>Langsung ke Projek POS</span>
+  </a>
+
+  <main id="top">
+
+    <!-- ============================================================
+         ACT I — HERO. Pinned stage, scroll-scrubbed mask-crack video,
+         interactive optical lens, and instant CTA to POS showcase.
+    ============================================================= -->
+    <section class="hero" id="hero" aria-label="Perkenalan Syafiq Siregar">
+      <div class="hero__stage" id="heroStage">
+
+        <video
+          id="heroVideo"
+          class="hero__video"
+          src="assets/video/hero-scrub.mp4"
+          poster="assets/img/hero-0.jpg"
+          muted playsinline preload="auto"
+        ></video>
+
+        <!-- Vignette scrim for crisp text legibility -->
+        <div class="hero__scrim" aria-hidden="true"></div>
+
+        <!-- Interactive Mask Decode Layer: reveals hero-unmasked.jpg via optical lens -->
+        <div class="hero__decode" id="heroDecode" aria-hidden="true">
+          <div class="hero__face-wrap" id="heroFaceWrap">
+            <img class="hero__face-img" id="heroFaceImg" src="assets/img/hero-unmasked.jpg" alt="Syafiq Siregar" draggable="false" />
+          </div>
+          <div class="lens" id="heroLens">
+            <span class="lens__frost"></span>
+            <span class="lens__scan"></span>
+            <span class="lens__rim"></span>
+            <span class="lens__chroma"></span>
+            <span class="lens__label">IDENTITAS: SYAFIQ</span>
+          </div>
+        </div>
+
+        <!-- Head hover trigger zone sitting over the mask -->
+        <div class="hero__head-zone" id="headZone" aria-label="Arahkan kursor ke topeng untuk melihat foto asli"></div>
+
+        <!-- Decode hint -->
+        <div class="hero__decode-hint caption" id="decodeHint" aria-hidden="true">
+          <span class="caption-box caption-box--tilt">ARAHKAN KURSOR KE TOPENG · UNGKAP SOSOK DI BALIK KODE</span>
+        </div>
+
+        <!-- Parallax layer: BACK -->
+        <div class="hero__layer hero__layer--back" data-depth="back" aria-hidden="true"></div>
+
+        <!-- Parallax layer: MID -->
+        <div class="hero__layer hero__layer--mid" data-depth="mid" aria-hidden="true">
+          <span class="shard shard--a"></span>
+          <span class="shard shard--b"></span>
+          <span class="shard shard--c"></span>
+          <span class="shard shard--d"></span>
+        </div>
+
+        <!-- Phrase sequence -->
+        <div class="hero__copy">
+          <div class="hero__phrase hero__phrase--1" id="phrase1">
+            <span class="caption-box">Halo, saya Syafiq Siregar.</span>
+            <div class="hero__quick-bar">
+              <a class="hero__quick-btn hero__quick-btn--primary magnetic" href="#case-files">
+                <span class="magnetic__inner">Lihat Aplikasi POS &amp; Projek</span>
+              </a>
+              <a class="hero__quick-btn" href="https://github.com/SyafiqSiregar" target="_blank" rel="noopener noreferrer">
+                <svg aria-hidden="true"><use href="#icon-github"/></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero__phrase hero__phrase--3" id="phrase3">
+            <p class="hero__pre">Software Engineer &amp; POS Architect</p>
+            <h1 class="hero__alias glitchable" data-text="SPIDER-DEV">SPIDER-DEV</h1>
+            <p class="hero__role">Spesialis Aplikasi Kasir (POS) Offline-First, Android APK &amp; UI/UX Design · Telkom University (Motion Lab).</p>
+          </div>
+        </div>
+
+        <!-- Parallax layer: FRONT -->
+        <div class="hero__layer hero__layer--front" data-depth="front" aria-hidden="true">
+          <span class="stroke stroke--a"></span>
+          <span class="stroke stroke--b"></span>
+        </div>
+
+        <!-- Scroll hint -->
+        <div class="hero__hint" id="heroHint" aria-hidden="true">
+          <span>Scroll perlahan</span><i></i>
+        </div>
+
+        <!-- Freeze-flash element -->
+        <div class="flash" id="heroFlash" aria-hidden="true"></div>
+
+        <!-- Fade-to-ink -->
+        <div class="hero__fade" id="heroFade" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INTERLUDE — angled marquee divider between the two reels
+    ============================================================= -->
+    <section class="interlude" aria-hidden="true">
+      <div class="interlude__belt">
+        <div class="belt__track" id="beltTrack">
+          <span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span
+          ><span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span
+          ><span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span
+          ><span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span
+          ><span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span
+          ><span>OFFLINE-FIRST&nbsp;POS&nbsp;·&nbsp;ANDROID&nbsp;APK&nbsp;·&nbsp;SYAFIQ&nbsp;SIREGAR&nbsp;·&nbsp;MOTION&nbsp;LAB&nbsp;TELKOM&nbsp;·&nbsp;CLEAN&nbsp;ARCHITECTURE&nbsp;·&nbsp;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACT II — MISSIONS. Highlighting Flagship POS Systems first
+         in the scroll-scrubbed action reel.
+    ============================================================= -->
+    <section class="missions" id="missions" aria-label="Sorotan Karya Utama">
+      <div class="missions__stage" id="missionsStage">
+
+        <video
+          id="allVideo"
+          class="missions__video"
+          src="assets/video/all-scrub.mp4"
+          poster="assets/img/all-4.jpg"
+          muted playsinline preload="metadata"
+        ></video>
+
+        <!-- Comic treatment layers -->
+        <div class="halftone" id="halftone" aria-hidden="true"></div>
+        <div class="misprint" id="misprint" aria-hidden="true"></div>
+        <div class="flash" id="missionFlash" aria-hidden="true"></div>
+
+        <!-- PANEL 01 · Flagship POS #1: SembakoOS -->
+        <article class="panel panel--01" data-panel="0">
+          <div class="panel__frame">
+            <header class="panel__eyebrow">
+              <span class="caption-box caption-box--tilt">SOROTAN POS 01 · OFFLINE-FIRST PWA</span>
+            </header>
+            <h3 class="panel__title" data-split>SEMBAKO<br />OS POS</h3>
+            <p class="panel__desc">
+              Aplikasi kasir dan inventaris toko sembako berbasis IndexedDB yang berjalan 100% lokal tanpa ketergantungan internet, teruji oleh 160 automated tests.
+            </p>
+            <ul class="panel__tags">
+              <li>TypeScript</li><li>React&nbsp;18</li><li>IndexedDB</li><li>160&nbsp;Tests</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="panel__cta magnetic" href="https://sembako-os.vercel.app" target="_blank" rel="noopener noreferrer"><span class="magnetic__inner">Buka Live App</span></a>
+              <a class="panel__cta panel__cta--ghost" href="#case-files">Semua Aplikasi POS</a>
+            </div>
+          </div>
+          <span class="pow" aria-hidden="true">THWIP!</span>
+        </article>
+
+        <!-- PANEL 02 · Flagship POS #2: Hybrid Android APK & F&B POS -->
+        <article class="panel panel--02" data-panel="1">
+          <div class="panel__frame">
+            <header class="panel__eyebrow">
+              <span class="caption-box caption-box--tilt">SOROTAN POS 02 · ANDROID APK &amp; THERMAL</span>
+            </header>
+            <h3 class="panel__title" data-split>RAYA &amp; 1966<br />POS SUITE</h3>
+            <p class="panel__desc">
+              Ekosistem kasir F&amp;B dan Carwash untuk tablet Android &amp; Web dengan cetak struk Bluetooth ESC/POS 58/80mm, buku kas laci, serta manajemen shift kru.
+            </p>
+            <ul class="panel__tags">
+              <li>Capacitor&nbsp;8</li><li>Android&nbsp;APK</li><li>ESC/POS&nbsp;Print</li>
+            </ul>
+            <div class="panel__actions">
+              <a class="panel__cta magnetic" href="https://1966-pos-system.vercel.app" target="_blank" rel="noopener noreferrer"><span class="magnetic__inner">Coba Demo Kasir</span></a>
+              <a class="panel__cta panel__cta--ghost" href="https://tubes-impal-pos.vercel.app" target="_blank" rel="noopener noreferrer">Demo Raya POS</a>
+            </div>
+          </div>
+          <span class="pow pow--red" aria-hidden="true">VRRM!</span>
+        </article>
+
+        <!-- PANEL 03 · Core Engineering Stack -->
+        <article class="panel panel--03" data-panel="2">
+          <div class="panel__frame panel__frame--wide">
+            <header class="panel__eyebrow">
+              <span class="caption-box caption-box--tilt">KAPABILITAS INTI · ENGINEERING STACK</span>
+            </header>
+            <h3 class="panel__title" data-split>KEAHLIAN &amp;<br />ARSITEKTUR</h3>
+            <ul class="arsenal">
+              <li><b>POS &amp; Hybrid APK</b><span>Offline-First PWA · Capacitor Android · Bluetooth ESC/POS · IndexedDB</span></li>
+              <li><b>Frontend &amp; Motion</b><span>React · TypeScript · Vue 3 · Next.js · Motion · GSAP · Tailwind</span></li>
+              <li><b>Backend &amp; Data</b><span>Java · Go · Python · Node.js · MySQL · Serverless Sheets API</span></li>
+              <li><b>Desain &amp; Jaringan</b><span>Figma Design Systems · Clean Architecture · Wireshark Packet Analysis</span></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACT III — PORTFOLIO SHOWCASE (POS Systems First, Followed by
+         Enterprise, Web & UI/UX Projects + Clean GitHub Explorer)
+    ============================================================= -->
+    <section class="case-files" id="case-files" aria-label="Daftar Projek Pilihan">
+      <div class="case-files__container">
+
+        <header class="case-files__head">
+          <div class="case-files__head-content">
+            <span class="section-kicker">PORTOFOLIO TERKURASI · PRODUKSI &amp; RISET</span>
+            <h2 class="case-files__title" data-split>PROJEK<br />ANDALAN</h2>
+            <p class="case-files__lead">
+              Disusun berdasarkan dampak operasional nyata: dimulai dari ekosistem <strong>Aplikasi Kasir (POS) Android APK, PWA Offline-First, &amp; Cloud Inventory</strong> yang digunakan langsung di lapangan, diikuti platform enterprise, web interaktif, dan sistem desain UI/UX.
+            </p>
+
+            <!-- Summary Highlight Strip -->
+            <div class="dossier-highlights" aria-label="Ringkasan spesialisasi projek">
+              <div class="dossier-pill">
+                <svg aria-hidden="true"><use href="#icon-pos"/></svg>
+                <div>
+                  <strong>6 Sistem POS</strong>
+                  <span>Kasir, Stok SN, &amp; Thermal Print</span>
+                </div>
+              </div>
+              <div class="dossier-pill">
+                <svg aria-hidden="true"><use href="#icon-android"/></svg>
+                <div>
+                  <strong>Android APK &amp; PWA</strong>
+                  <span>100% Offline-First Siap Tablet</span>
+                </div>
+              </div>
+              <div class="dossier-pill">
+                <svg aria-hidden="true"><use href="#icon-layers"/></svg>
+                <div>
+                  <strong>Full-Stack &amp; UI/UX</strong>
+                  <span>Dari Riset Figma ke Produksi</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dossier Operative Character (Spider-Man) -->
+          <aside class="case-files__operative" id="caseOperative" aria-label="Ilustrasi Karakter Spider-Dev">
+            <div class="operative__backdrop" aria-hidden="true">
+              <span class="operative__aura"></span>
+              <span class="operative__radar"></span>
+              <span class="operative__halftone"></span>
+            </div>
+
+            <div class="operative__figure-wrap" id="operativeFigure">
+              <img
+                src="assets/img/character-base.webp"
+                alt="Karakter Spider-Man Miles Morales"
+                class="operative__img"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
+
+            <div class="operative__badge caption-box caption-box--tilt">
+              <svg class="operative__badge-svg" aria-hidden="true"><use href="#icon-bolt"/></svg>
+              <span>ARCHITECT // SPIDER-DEV</span>
+            </div>
+
+            <button type="button" class="operative__callout pow pow--blue" id="operativeThwip" aria-label="Mainkan efek komik THWIP">
+              THWIP!
+            </button>
+
+            <div class="operative__hud-tag" aria-hidden="true">
+              <span class="hud__dot"></span>
+              <span class="hud__code">POS.ENGINE // READY</span>
+            </div>
+          </aside>
+        </header>
+
+        <!-- Interactive Category Filter Toolbar (Animated with Motion Spring) -->
+        <div class="project-toolbar" role="region" aria-label="Filter kategori projek">
+          <div class="filter-tabs" id="projectFilters" role="tablist" aria-label="Kategori projek">
+            <button type="button" class="filter-tab is-active" role="tab" aria-selected="true" data-filter="all">
+              <span>Semua Unggulan</span>
+              <b class="filter-tab__count" data-count-for="all">12</b>
+            </button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="pos">
+              <svg aria-hidden="true"><use href="#icon-pos"/></svg>
+              <span>Aplikasi POS &amp; Kasir</span>
+              <b class="filter-tab__count" data-count-for="pos">6</b>
+            </button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="enterprise">
+              <span>Enterprise &amp; Operasional</span>
+              <b class="filter-tab__count" data-count-for="enterprise">3</b>
+            </button>
+            <button type="button" class="filter-tab" role="tab" aria-selected="false" data-filter="web">
+              <span>Web, E-Commerce &amp; UI/UX</span>
+              <b class="filter-tab__count" data-count-for="web">3</b>
+            </button>
+          </div>
+          <p class="project-toolbar__status" id="filterStatus" aria-live="polite">
+            Menampilkan 12 projek unggulan · Aplikasi POS ditempatkan paling atas
+          </p>
+        </div>
+
+        <!-- Curated Projects Container (Populated & Choreographed by JS + Motion) -->
+        <div id="curatedProjectsRoot" class="curated-root">
+          <!-- Tier 1 (Flagship POS Apps) and Tier 2 (Other Projects) rendered cleanly from structured data with progressive enhancement -->
+          <noscript>
+            <p class="noscript-note">Aktifkan JavaScript untuk memfilter daftar aplikasi POS dan melihat detail arsitektur interaktif.</p>
+          </noscript>
+        </div>
+
+        <!-- ============================================================
+             CLEAN GITHUB REPOSITORY ARCHIVE EXPLORER
+             (All remaining public repos neatly searchable, never cluttering top showcase)
+        ============================================================= -->
+        <div class="repo-explorer" id="github-projects">
+          <div class="repo-explorer__head">
+            <div>
+              <span class="repo-explorer__eyebrow">GITHUB LIVE SYNC · SYAFIQSIREGAR</span>
+              <h3 class="repo-explorer__title">Indeks Lengkap Repositori Publik</h3>
+              <p class="repo-explorer__desc">
+                Seluruh repositori kode sumber publik terhubung langsung ke GitHub API, diurutkan dengan memprioritaskan sistem POS &amp; aplikasi produksi terlebih dahulu.
+              </p>
+            </div>
+            <div class="repo-explorer__controls">
+              <label class="repo-search" for="repoSearchInput">
+                <svg aria-hidden="true"><use href="#icon-search"/></svg>
+                <input
+                  type="search"
+                  id="repoSearchInput"
+                  placeholder="Cari repo, bahasa, atau topik (mis. POS, Vue, Java)…"
+                  autocomplete="off"
+                />
+              </label>
+              <a class="repo-profile-btn magnetic" href="https://github.com/SyafiqSiregar" target="_blank" rel="noopener noreferrer">
+                <span class="magnetic__inner">
+                  <svg aria-hidden="true"><use href="#icon-github"/></svg>
+                  <span>Profil GitHub</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="repo-explorer__meta">
+            <span class="repo-explorer__status" id="githubProjectCount">Memuat indeks repositori…</span>
+            <button type="button" class="repo-toggle-btn" id="repoToggleBtn" aria-expanded="false">
+              Tampilkan Semua Repositori
+            </button>
+          </div>
+
+          <div class="repo-list" id="repoList" role="list"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACT IV — THE CRAFT & ENGINEERING CHRONICLES (Behind The Code)
+    ============================================================= -->
+    <section class="the-craft" id="the-craft" aria-label="Filosofi dan Proses Rekayasa">
+      <div class="the-craft__container">
+        <div class="the-craft__head">
+          <div>
+            <span class="section-kicker">BAB 02 · PRINSIP REKAYASA PERANGKAT LUNAK</span>
+            <h2 class="the-craft__title" data-split>DI BALIK KODE</h2>
+            <p class="the-craft__lead">
+              Setiap aplikasi kasir dan sistem operasional dirancang untuk tetap tangguh di kondisi nyata: antarmuka cepat dipahami kasir, data transaksi aman saat koneksi terputus, dan arsitektur bersih untuk jangka panjang.
+            </p>
+          </div>
+
+          <!-- View Switcher: Visual Comic vs Technical Blueprint -->
+          <div class="craft-switcher" role="group" aria-label="Pilih mode tampilan panel">
+            <button type="button" class="craft-switch is-active" data-craft-mode="comic" aria-pressed="true">
+              <span>Mode Cerita Komik</span>
+            </button>
+            <button type="button" class="craft-switch" data-craft-mode="blueprint" aria-pressed="false">
+              <svg aria-hidden="true"><use href="#icon-layers"/></svg>
+              <span>Mode Blueprint Teknis</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Personalized Editorial Comic Issue Sheet (Replaces generic stock header) -->
+        <div class="craft-sheet" id="craftSheet" data-mode="comic">
+
+          <header class="craft-masthead">
+            <div class="craft-masthead__stamp">
+              <span class="craft-masthead__issue">ISSUE #02 · EDISI REKAYASA</span>
+              <strong class="craft-masthead__loc">BANDUNG, ID</strong>
+            </div>
+
+            <div class="craft-masthead__brand">
+              <div class="craft-masthead__headline">
+                <svg class="craft-masthead__spider" aria-hidden="true"><use href="#spider"/></svg>
+                <span>SPIDER<em>/</em>DEV ENGINEERING CHRONICLES</span>
+              </div>
+              <p class="craft-masthead__byline">
+                KARYA <strong>SYAFIQ SIREGAR</strong> · MOTION LABORATORY TELKOM UNIVERSITY &amp; MITRA INDUSTRI
+              </p>
+            </div>
+
+            <div class="craft-masthead__seal">
+              <span>VERIFIED STACK</span>
+              <strong>POS · APK · CLOUD</strong>
+            </div>
+          </header>
+
+          <!-- 4-panel bespoke Spider-Dev comic & engineering grid -->
+          <div class="comic-grid">
+
+            <!-- PANEL 01: OFFLINE-FIRST ENGINE + INTERACTIVE NETWORK SIMULATOR -->
+            <figure class="cpanel cpanel--a">
+              <div class="cpanel__visual">
+                <img class="cpanel__img" src="assets/panel-01.jpg?v=2" alt="Ilustrasi Spider-Dev merancang sistem kasir Offline-First" loading="lazy" />
+                <div class="cpanel__scrim" aria-hidden="true"></div>
+                <span class="cpanel__tag">FIG. 01 · OFFLINE-FIRST POS</span>
+              </div>
+
+              <div class="cpanel__body">
+                <div class="cpanel__meta-row">
+                  <button type="button" class="cpanel__sim-btn" id="offlineSimBtn" aria-pressed="false">
+                    <span class="cpanel__sim-dot" id="offlineSimDot"></span>
+                    <span id="offlineSimLabel">JARINGAN: ONLINE · UJI PUTUS KONEKSI</span>
+                  </button>
+                </div>
+
+                <div class="cpanel__blueprint" hidden>
+                  <span class="bp-code">LAYER 01 // LOCAL-FIRST PERSISTENCE</span>
+                  <strong class="bp-title">React 18 + TypeScript 5 → Dexie.js IndexedDB</strong>
+                  <ul class="bp-specs">
+                    <li>0ms latensi baca/tulis transaksi kasir lokal</li>
+                    <li>6/6 invarian basis data menjaga konsistensi stok</li>
+                    <li>Tetap mencetak struk &amp; rekap laba rugi tanpa sinyal</li>
+                  </ul>
+                </div>
+
+                <figcaption class="cpanel__cap" id="offlineSimCap">
+                  <strong>Ketahanan Offline-First:</strong> Pada <em>SembakoOS</em> dan <em>1966 Caffe POS</em>, kasir tetap melayani transaksi, mutasi stok, dan laporan harian tanpa jeda meski internet toko padam total.
+                </figcaption>
+              </div>
+            </figure>
+
+            <!-- PANEL 02: ANDROID APK & HARDWARE BRIDGE -->
+            <figure class="cpanel cpanel--b">
+              <div class="cpanel__visual">
+                <img class="cpanel__img" src="assets/panel-02.jpg?v=2" alt="Ilustrasi Spider-Dev mengintegrasikan tablet Android dan perangkat kasir" loading="lazy" />
+                <div class="cpanel__scrim" aria-hidden="true"></div>
+                <span class="cpanel__tag">FIG. 02 · ANDROID APK &amp; ESC/POS</span>
+                <button type="button" class="cpanel__fx" id="craftThwipBtn" aria-label="Efek komik THWIP">
+                  <svg aria-hidden="true"><use href="#burst"/></svg>
+                  <em>THWIP!</em>
+                </button>
+              </div>
+
+              <div class="cpanel__body">
+                <div class="cpanel__blueprint" hidden>
+                  <span class="bp-code">LAYER 02 // NATIVE HARDWARE BRIDGE</span>
+                  <strong class="bp-title">Capacitor 8 APK + Web Bluetooth ESC/POS</strong>
+                  <ul class="bp-specs">
+                    <li>Cetak struk termal 58mm &amp; 80mm via Bluetooth</li>
+                    <li>Validasi input scanner barcode Serial Number</li>
+                    <li>Paket APK siap pasang di tablet Android kasir</li>
+                  </ul>
+                </div>
+
+                <figcaption class="cpanel__cap cpanel__cap--sm">
+                  <strong>Jembatan Perangkat Fisik:</strong> Menghubungkan aplikasi langsung ke tablet Android, printer termal Bluetooth, dan pemindai barcode.
+                </figcaption>
+              </div>
+            </figure>
+
+            <!-- PANEL 03: ATOMIC UI/UX TO TESTED CLEAN CODE -->
+            <figure class="cpanel cpanel--c">
+              <div class="cpanel__visual">
+                <img class="cpanel__img" src="assets/panel-03.jpg?v=2" alt="Ilustrasi presisi sistem desain UI/UX ke kode teruji" loading="lazy" />
+                <div class="cpanel__scrim" aria-hidden="true"></div>
+                <span class="cpanel__tag">FIG. 03 · UI/UX KE CLEAN CODE</span>
+              </div>
+
+              <div class="cpanel__body">
+                <div class="cpanel__blueprint" hidden>
+                  <span class="bp-code">LAYER 03 // DESIGN SYSTEM &amp; QA</span>
+                  <strong class="bp-title">Figma Atomic Tokens → 160 Automated Tests</strong>
+                  <ul class="bp-specs">
+                    <li>Alur transaksi kasir tuntas &lt; 3 ketukan layar</li>
+                    <li>40+ komponen atomik dengan kontras tinggi</li>
+                    <li>33 test suite otomatis mencegah regresi logika</li>
+                  </ul>
+                </div>
+
+                <figcaption class="cpanel__cap cpanel__cap--sm">
+                  <strong>Riset UI/UX &amp; Pengujian Ketat:</strong> Antarmuka intuitif bagi kasir baru, dikawal 160 pengujian otomatis agar hitungan kas selalu presisi.
+                </figcaption>
+              </div>
+            </figure>
+
+            <!-- PANEL 04: MOTION LAB TO REAL BUSINESS DEPLOYMENT -->
+            <figure class="cpanel cpanel--d">
+              <div class="cpanel__visual">
+                <img class="cpanel__img" src="assets/panel-04.jpg?v=2" alt="Ilustrasi Spider-Dev mengawasi ekosistem aplikasi bisnis di kota" loading="lazy" />
+                <div class="cpanel__scrim" aria-hidden="true"></div>
+                <span class="cpanel__tag">FIG. 04 · RISET KE PRODUKSI NYATA</span>
+              </div>
+
+              <div class="cpanel__body">
+                <div class="cpanel__meta-row">
+                  <span class="cpanel__credit">SYAFIQ SIREGAR · SPIDER/DEV</span>
+                </div>
+
+                <div class="cpanel__blueprint" hidden>
+                  <span class="bp-code">LAYER 04 // PRODUCTION ECOSYSTEM</span>
+                  <strong class="bp-title">Motion Lab Telkom Univ → Sistem Klien Aktif</strong>
+                  <ul class="bp-specs">
+                    <li>Riset konkuren Go/Java &amp; audit paket Wireshark</li>
+                    <li>Terimplementasi di ritel sembako, F&amp;B, &amp; carwash</li>
+                    <li>Sistem stok SN aktif di CV. Retina Perisai Nusantara</li>
+                  </ul>
+                </div>
+
+                <figcaption class="cpanel__cap">
+                  <strong>Dari Laboratorium ke Lapangan:</strong> Mengangkat standar riset Motion Laboratory Telkom University menjadi solusi kasir, gudang, dan pelaporan yang menopang bisnis nyata setiap hari.
+                </figcaption>
+              </div>
+            </figure>
+
+          </div>
+        </div>
+
+        <!-- 4-Step End-to-End Engineering Workflow Strip -->
+        <div class="craft-pipeline" aria-label="Tahapan rekayasa sistem">
+          <div class="pipeline-step">
+            <span class="pipeline-step__num">01</span>
+            <div>
+              <strong>Audit Alur &amp; Desain UI/UX</strong>
+              <p>Memetakan titik rawan antrean kasir dan merancang prototipe Figma yang ramah operator lapangan.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="pipeline-step__num">02</span>
+            <div>
+              <strong>Arsitektur Data Anti-Selisih</strong>
+              <p>Membangun skema penyimpanan Offline-First IndexedDB, MySQL, atau Cloud Sheets bervalidasi SN.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="pipeline-step__num">03</span>
+            <div>
+              <strong>Integrasi APK &amp; Printer</strong>
+              <p>Membungkus aplikasi ke Android Capacitor serta menghubungkan printer Bluetooth ESC/POS &amp; barcode.</p>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <span class="pipeline-step__num">04</span>
+            <div>
+              <strong>Uji Otomatis &amp; Rilis Produksi</strong>
+              <p>Menjalankan pengujian invarian transaksi sebelum sistem diterapkan langsung pada operasional mitra.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ACT V — MANIFESTO, EXPERIENCE & VERIFIED STATS
+    ============================================================= -->
+    <section class="manifesto" id="manifesto" aria-label="Profil dan Pengalaman">
+      <div class="manifesto__container">
+        <header class="manifesto__head">
+          <span class="section-kicker">BAB 03 · PROFIL &amp; REKAM JEJAK</span>
+          <p class="manifesto__quote">
+            “Setiap produk digital punya dua sisi: antarmuka jernih yang memudahkan pengguna dalam hitungan detik, serta fondasi algoritma dan basis data presisi yang menjaga keakuratan setiap transaksi.”
+          </p>
+        </header>
+
+        <div class="manifesto__cols">
+          <div class="manifesto__card">
+            <span class="manifesto__card-tag">AKADEMIK &amp; LABORATORIUM RISET</span>
+            <h4>Motion Laboratory · Telkom University</h4>
+            <p>
+              Mahasiswa Informatika di Telkom University sekaligus aktif di Motion Laboratory. Berfokus pada rekayasa aplikasi web berkinerja tinggi, arsitektur aplikasi mobile/PWA, serta perancangan sistem desain UI/UX terukur.
+            </p>
+          </div>
+          <div class="manifesto__card">
+            <span class="manifesto__card-tag">IMPLEMENTASI INDUSTRI &amp; UMKM</span>
+            <h4>CV. Retina Perisai Nusantara &amp; Mitra Usaha</h4>
+            <p>
+              Berpengalaman membangun sistem operasional nyata mulai dari POS pelacakan Serial Number CCTV, kasir tablet Android offline-first untuk F&amp;B &amp; ritel sembako, hingga aplikasi pelaporan lapangan lintas perangkat.
+            </p>
+          </div>
+        </div>
+
+        <div class="manifesto__stats">
+          <div class="stat-box">
+            <strong class="stat-num" data-val="6" data-suffix=" Sistem">6 Sistem</strong>
+            <span class="stat-lbl">Aplikasi POS &amp; Kasir Terbangun</span>
+          </div>
+          <div class="stat-box">
+            <strong class="stat-num" data-val="28" data-suffix="+" id="publicRepoStat">28+</strong>
+            <span class="stat-lbl">Repositori Publik di GitHub</span>
+          </div>
+          <div class="stat-box">
+            <strong class="stat-num" data-val="160" data-suffix=" Tes">160 Tes</strong>
+            <span class="stat-lbl">Automated Suite pada SembakoOS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         OUTRO / CONTACT
+    ============================================================= -->
+    <section class="contact" id="contact" aria-label="Kontak dan Kolaborasi">
+      <p class="contact__continued"><span class="caption-box">SIAP BERKOLABORASI</span></p>
+      <h2 class="contact__title" data-split>BUTUH SISTEM POS ATAU<br />WEB BERKELAS PRODUKSI?</h2>
+      <p class="contact__sub">Diskusikan kebutuhan aplikasi kasir, sistem inventaris, atau produk digital Anda.</p>
+
+      <div class="contact__cta-row">
+        <a class="contact__mail magnetic glitchable" data-text="syafiq.siregar@telkomuniversity.ac.id" href="mailto:syafiq.siregar@telkomuniversity.ac.id">
+          <span class="magnetic__inner">syafiq.siregar@telkomuniversity.ac.id</span>
+        </a>
+        <a class="contact__wa magnetic" href="https://wa.me/6287792490128" target="_blank" rel="noopener noreferrer">
+          <span class="magnetic__inner">Chat via WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="contact__socials">
+        <a class="contact__social-link" href="https://github.com/SyafiqSiregar" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="contact__social-link" href="https://www.linkedin.com/in/syafiq-yusuf-ikhsan-william-siregar-7938ab330" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="contact__social-link" href="https://www.instagram.com/ssyafiqsiregar" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="contact__social-link" href="https://wa.me/6287792490128" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+
+      <footer class="footer">
+        <span>© 2026 Syafiq Siregar · Telkom University · Motion Laboratory</span>
+        <span class="footer__mono">SS/DEV · BANDUNG</span>
+      </footer>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       INTERACTIVE PROJECT ARCHITECTURE MODAL (Motion Spring Powered)
+  ============================================================= -->
+  <div class="pmodal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="pmodalTitle" hidden>
+    <div class="pmodal__backdrop" id="pmodalBackdrop"></div>
+    <div class="pmodal__dialog" id="pmodalDialog" role="document">
+      <div class="pmodal__topbar">
+        <span class="pmodal__badge" id="pmodalBadge">FLAGSHIP POS</span>
+        <button type="button" class="pmodal__close" id="pmodalClose" aria-label="Tutup detail projek">
+          <svg aria-hidden="true"><use href="#icon-close"/></svg>
+        </button>
+      </div>
+      <div class="pmodal__content" id="pmodalContent"></div>
+    </div>
+  </div>
+
+  <!-- GSAP + ScrollTrigger + Lenis Smooth Scroll + Motion (Framer Motion DOM Engine) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@12.4.7/dist/motion.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

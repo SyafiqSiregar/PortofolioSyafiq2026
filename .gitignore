@@ -1,0 +1,8 @@
+# macOS & OS artifacts
+__MACOSX/
+.DS_Store
+Thumbs.db
+
+# Raw un-encoded source videos (site uses assets/video/*-scrub.mp4)
+Hero-Section-Video.mp4
+All-Sections-Video.mp4
