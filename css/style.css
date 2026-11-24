@@ -2803,7 +2803,8 @@ button, input { font: inherit; color: inherit; }
 @media (max-width: 900px) {
   .chrome {
     top: 0;
-    padding: 0;
+    padding: env(safe-area-inset-top, 0px) 0 0;
+    background: rgba(12, 10, 20, 0.9);
   }
   .chrome__bar {
     border-top: none;
@@ -3049,7 +3050,7 @@ button, input { font: inherit; color: inherit; }
 }
 
 /* ==========================================================================
-   REDUCED MOTION — static, immediate, accessible
+   REDUCED MOTION — static, immediate, accessible (also active on iOS Reduce Motion)
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -3057,21 +3058,91 @@ button, input { font: inherit; color: inherit; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .rail, .thread, .loader, .reel-skip { display: none !important; }
-  .hero__stage, .missions__stage { height: auto; min-height: 100vh; }
-  .hero__phrase { position: static; opacity: 1; margin: 1.2rem 0; }
+  .rail,
+  .thread,
+  .loader,
+  .reel-skip,
+  .hero__decode-hint,
+  .hero__head-zone,
+  .hero__decode,
+  .hero__hint,
+  .hero__layer--mid,
+  .hero__layer--front {
+    display: none !important;
+  }
+  .hero__stage {
+    height: auto;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: clamp(19rem, 48svh, 28rem);
+  }
+  .hero__video {
+    object-position: 50% 22%;
+  }
+  .hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(9, 8, 15, 0.22) 0%,
+      rgba(9, 8, 15, 0.06) 36%,
+      rgba(9, 8, 15, 0.86) 66%,
+      var(--ink) 100%
+    );
+  }
   .hero__copy {
     position: relative;
     inset: auto;
-    padding: 6rem 1.5rem 3rem;
-    background: var(--ink);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.25rem 4.25rem;
+    background: transparent;
+    pointer-events: auto;
+  }
+  .hero__phrase {
+    position: static;
+    inset: auto;
+    opacity: 1;
+    margin: 0;
+    text-align: center;
+    align-items: center;
+  }
+  .hero__phrase--1 {
+    order: 2;
+    align-items: center;
+  }
+  .hero__phrase--3 {
+    order: 1;
+  }
+  .hero__quick-bar {
+    justify-content: center;
+  }
+  .missions__stage {
+    height: auto;
+    min-height: auto;
+    padding: 4.5rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .missions__video {
+    opacity: 0.3;
   }
   .panel {
     position: relative;
     inset: auto;
     visibility: visible;
     pointer-events: auto;
-    padding: 2rem 1rem;
+    justify-content: center !important;
+    padding: 0 !important;
   }
-  .pow { opacity: 1; }
+  .panel__frame {
+    transform: none;
+  }
+  .pow {
+    display: none;
+  }
 }

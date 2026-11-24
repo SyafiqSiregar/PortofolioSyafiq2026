@@ -13,6 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const prefersReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isMobile = matchMedia("(max-width: 768px) and (pointer: coarse)").matches;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+  (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const M = window.Motion || null;
 
 const heroVideo = document.getElementById("heroVideo");
@@ -1121,7 +1123,10 @@ const loaderPct = document.getElementById("loaderPct");
 const loaderSkip = document.getElementById("loaderSkip");
 
 async function upgradeVideoToBlob(video, onProgress) {
-  if (!video || location.protocol === "file:") return;
+  if (!video || location.protocol === "file:" || isIOS) {
+    if (onProgress) onProgress(1);
+    return;
+  }
   const src = video.getAttribute("src");
   if (!src || src.startsWith("blob:")) return;
 
@@ -1175,6 +1180,12 @@ initProjectShowcase();
 initModalListeners();
 initGithubExplorer();
 initCraftSection();
+
+// Update decode hint wording for touch devices so it never says "Arahkan kursor" on phones
+if (isMobile) {
+  const hintBox = document.querySelector("#decodeHint .caption-box");
+  if (hintBox) hintBox.textContent = "KETUK TOPENG · UNGKAP SOSOK DI BALIK KODE";
+}
 
 if (prefersReduced) {
   loader?.remove();
